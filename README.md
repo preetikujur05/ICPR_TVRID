@@ -118,10 +118,3 @@ Depth track adds CE with a 0.5 weighting coefficient to stabilise training.
 `FusionEncoder` concatenates RGB and Depth embeddings then projects through a single linear + BN + ReLU layer to produce the final cross-modal embedding.
 
 ---
-
-## Key Design Decisions
-
-- **Shared `utils/`** – `DataConfig`, `UnifiedReIDDataset`, `UnifiedReIDDataModule`, and both encoders are **identical** across all three tracks and centralised to avoid duplication.
-- **Separate model files** – Each track's Lightning module is isolated, making it easy to modify one track without affecting others.
-- **CLI-first training scripts** – All hyper-parameters are overridable via command-line flags; defaults mirror `config/train.yaml`.
-- **Single `eval_generate.py`** – Handles all three tracks through a unified registry, avoiding three separate evaluation scripts.
