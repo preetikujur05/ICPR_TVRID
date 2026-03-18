@@ -1,0 +1,51 @@
+# ── Training Configuration ────────────────────────────────────────────────────
+# Shared training hyper-parameters used by train_rgb.py, train_depth.py,
+# and train_cross.py.  Per-track overrides are listed under each track section.
+
+defaults:
+  - data: default
+
+# ── Common ────────────────────────────────────────────────────────────────────
+epochs: 20
+batch_size: 6          # reduce if OOM
+embedding_size: 256
+seed: 42
+checkpoint_dir: "checkpoints"
+log_dir: "lightning_logs"
+accelerator: "gpu"
+devices: 1
+precision: 16          # mixed precision
+log_every_n_steps: 10
+
+# ── Track: RGB ────────────────────────────────────────────────────────────────
+rgb:
+  modality: "rgb"
+  anchor_modality: "rgb"
+  positive_modality: "rgb"
+  negative_modality: "rgb"
+  lr: 3.0e-4
+  margin: 0.3
+  epochs: 20
+  checkpoint: "checkpoints/best_rgb.ckpt"
+
+# ── Track: Depth ──────────────────────────────────────────────────────────────
+depth:
+  modality: "depth"
+  anchor_modality: "depth"
+  positive_modality: "depth"
+  negative_modality: "depth"
+  lr: 1.0e-4
+  margin: 0.5
+  epochs: 35
+  checkpoint: "checkpoints/best_depth.ckpt"
+
+# ── Track: Cross-modal (RGB-D Fusion) ─────────────────────────────────────────
+cross:
+  modality: "rgbd"
+  anchor_modality: "rgb"
+  positive_modality: "depth"
+  negative_modality: "depth"
+  lr: 3.0e-4
+  margin: 0.3
+  epochs: 20
+  checkpoint: "checkpoints/fusion_cross.ckpt"
