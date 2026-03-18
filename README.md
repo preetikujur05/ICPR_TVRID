@@ -15,7 +15,6 @@ ICPR-2026-TVRID/
 │   └── train.yaml                # Training hyper-parameters for all 3 tracks
 │
 ├── data/
-│   └── data.txt                  # Describes expected CSV / folder layout
 │
 ├── utils/                        # ── Shared across all tracks ──
 │   ├── __init__.py
