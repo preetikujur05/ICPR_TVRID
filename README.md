@@ -55,13 +55,17 @@ ICPR-2026-TVRID/
 pip install -r requirements.txt
 ```
 
-### 2. Prepare data splits
+### 2. Dataset link
+
+https://drive.google.com/file/d/1UiNMZgZ8BUGYRFiZU34ME0BrbtD2b3La/view?usp=sharing
+
+### 3. Prepare data splits
 ```bash
 python prepare_data.py
 # Outputs: data/train_split.csv, data/valid_split.csv
 ```
 
-### 3. Train
+### 4. Train
 
 ```bash
 # Track 1 – RGB
@@ -81,14 +85,14 @@ python train_depth.py --epochs 40 --margin 0.5
 python train_cross.py --epochs 25 --embedding_size 512
 ```
 
-### 4. Generate rankings
+### 5. Generate rankings
 ```bash
 python eval_generate.py --track all
 # or for a single track:
 python eval_generate.py --track rgb
 ```
 
-### 5. Score
+### 6. Score
 ```bash
 python eval_score.py --track all
 ```
